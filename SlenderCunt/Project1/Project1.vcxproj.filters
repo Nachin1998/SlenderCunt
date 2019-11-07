@@ -2,5 +2,18 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="parallax.cpp">
+      <Filter>pantallas</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="pantallas">
+      <UniqueIdentifier>{7a28e264-f413-44ec-9157-e533fa9c0a18}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="parallax.h">
+      <Filter>pantallas</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
