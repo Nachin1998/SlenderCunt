@@ -5,6 +5,7 @@
     <ClCompile Include="parallax.cpp">
       <Filter>pantallas</Filter>
     </ClCompile>
+    <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="pantallas">

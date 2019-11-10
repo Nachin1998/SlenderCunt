@@ -207,9 +207,9 @@ typedef struct Color {
 
 // Rectangle type
 typedef struct Rectangle {
-    float x;
-    float y;
-    float width;
+	float x;
+	float y;
+	float width;
     float height;
 } Rectangle;
 
