@@ -1,14 +1,9 @@
-<<<<<<< HEAD
 #include "raylib.h"
 #include "definitions.h"
 #include "player.h"
 #include "enemy.h"
 
 using namespace Game;
-=======
-/*#include "raylib.h"
-
->>>>>>> 29c7c42a6a3b54237796fb63315eec3cdd18d513
 
 
 namespace Game {
@@ -38,25 +33,14 @@ namespace Game {
 
 		InitWindow(screenWidth, screenHeight, "sample game: floppy");
 
-<<<<<<< HEAD
 		InitGame();
-=======
-int main()
-{
-	InitWindow(screenWidth, screenHeight, "NIGGERS");
->>>>>>> 29c7c42a6a3b54237796fb63315eec3cdd18d513
 
 		SetTargetFPS(60);
 
-<<<<<<< HEAD
 		while (!WindowShouldClose())
 		{
 			UpdateDrawFrame();
 		}
-=======
-
-	SetTargetFPS(60);
->>>>>>> 29c7c42a6a3b54237796fb63315eec3cdd18d513
 
 		UnloadGame();
 
@@ -172,15 +156,7 @@ int main()
 	}
 }
 
-<<<<<<< HEAD
 void main()
 {
 	play();
 }
-=======
-void UpdateDrawFrame()
-{
-	UpdateGame();
-	DrawGame();
-}*/
->>>>>>> 29c7c42a6a3b54237796fb63315eec3cdd18d513
