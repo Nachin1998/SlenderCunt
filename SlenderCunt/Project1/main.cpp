@@ -14,6 +14,6 @@
 
 int main(void)
 {
-	parallax();
+	init_parallax();
 	return 0;
 }

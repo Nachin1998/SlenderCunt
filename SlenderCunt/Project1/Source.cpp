@@ -1,5 +1,4 @@
-/*#include "raylib.h"
-
+#include "parallax.h"
 
 
 Rectangle warrior;
@@ -8,9 +7,6 @@ Color enemyColor;
 Rectangle healthBar;
 Rectangle staminaBar;
 Rectangle floor;
-
-static const int screenWidth = 800;
-static const int screenHeight = 450;
 
 static bool gameOver = false;
 static bool pause = false;
@@ -28,14 +24,13 @@ static void UnloadGame();
 static void UpdateDrawFrame();
 
 
-int main()
+void play()
 {
 	InitWindow(screenWidth, screenHeight, "NIGGERS");
+	
+	SetTargetFPS(60);
 
 	InitGame();
-
-
-	SetTargetFPS(60);
 
 	while (!WindowShouldClose())
 	{
@@ -46,7 +41,6 @@ int main()
 
 	CloseWindow();
 
-	return 0;
 }
 
 
@@ -163,4 +157,4 @@ void UpdateDrawFrame()
 {
 	UpdateGame();
 	DrawGame();
-}*/
+}

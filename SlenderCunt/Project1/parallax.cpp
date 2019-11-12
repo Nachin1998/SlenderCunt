@@ -1,20 +1,23 @@
 #include "parallax.h"
 
-void parallax()
+Image foo;
+Image* asd;
+float scrollingBack;
+float scrollingMid ;
+float scrollingFore;
+Texture2D background;
+Texture2D midground;
+Texture2D foreground;
+
+void init_parallax()
 {
 	// Initialization
 //--------------------------------------------------------------------------------------
-	const int screenWidth = 800;
-	const int screenHeight = 450;
 
-	InitWindow(screenWidth, screenHeight, "raylib [textures] example - background scrolling");
 
 	// NOTE: Be careful, background width must be equal or bigger than screen width
 	// if not, texture should be draw more than two times for scrolling effect
 
-
-	Image foo;
-	Image* asd;
 
 	foo = LoadImage("../res/BackGround.png");
 	asd = &foo;
@@ -22,7 +25,7 @@ void parallax()
 	ImageResize(asd, screenWidth * 2, screenHeight);
 
 
-	Texture2D background = LoadTextureFromImage(foo);
+	background = LoadTextureFromImage(foo);
 
 	UnloadImage(foo);
 
@@ -31,7 +34,7 @@ void parallax()
 
 	ImageResize(asd, screenWidth / 2, screenHeight / 2);
 
-	Texture2D midground = LoadTextureFromImage(foo);
+	midground = LoadTextureFromImage(foo);
 
 	UnloadImage(foo);
 
@@ -40,18 +43,16 @@ void parallax()
 
 	ImageResize(asd, screenWidth, screenHeight / 1.8f);
 
-	Texture2D foreground = LoadTextureFromImage(foo);
-	//Texture2D foreground = LoadTexture("../res/ForeGround.png");
+	foreground = LoadTextureFromImage(foo);
 
 	UnloadImage(foo);
 
-	float scrollingBack = 0.0f;
-	float scrollingMid = 0.0f;
-	float scrollingFore = 0.0f;
-
-	SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 	//--------------------------------------------------------------------------------------
 
+
+}
+void draw()
+{
 	// Main game loop
 	while (!WindowShouldClose())    // Detect window close button or ESC key
 	{
