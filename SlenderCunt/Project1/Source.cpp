@@ -1,8 +1,5 @@
-#include "raylib.h"
+/*#include "raylib.h"
 
-#if defined(PLATFORM_WEB)
-#include <emscripten/emscripten.h>
-#endif
 
 
 Rectangle warrior;
@@ -33,20 +30,17 @@ static void UpdateDrawFrame();
 
 int main()
 {
-	InitWindow(screenWidth, screenHeight, "sample game: floppy");
+	InitWindow(screenWidth, screenHeight, "NIGGERS");
 
 	InitGame();
 
-#if defined(PLATFORM_WEB)
-	emscripten_set_main_loop(UpdateDrawFrame, 0, 1);
-#else
+
 	SetTargetFPS(60);
 
 	while (!WindowShouldClose())
 	{
 		UpdateDrawFrame();
 	}
-#endif
 
 	UnloadGame();         
 
@@ -169,4 +163,4 @@ void UpdateDrawFrame()
 {
 	UpdateGame();
 	DrawGame();
-}
+}*/
