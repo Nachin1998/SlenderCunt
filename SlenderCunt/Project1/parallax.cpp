@@ -14,8 +14,6 @@ namespace Game {
 
 	void init_parallax()
 	{
-
-
 		foo = LoadImage("../res/BackGround.png");
 		asd = &foo;
 

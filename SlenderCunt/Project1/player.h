@@ -4,6 +4,10 @@
 
 namespace Game {
 	struct Warrior {
+		float health;
+		float attackDamage;
+		bool aim;
+		bool active;
 		Rectangle rec;
 		Color color;
 	};

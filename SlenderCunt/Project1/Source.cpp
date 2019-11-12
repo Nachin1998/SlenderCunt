@@ -110,7 +110,7 @@ namespace Game {
 
 	void UnloadGame()
 	{
-
+		unload_parallax();
 	}
 
 	void UpdateDrawFrame()
