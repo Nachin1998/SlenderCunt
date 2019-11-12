@@ -1,24 +1,12 @@
-/*******************************************************************************************
-*
-*   raylib [textures] example - Background scrolling
-*
-*   This example has been created using raylib 2.0 (www.raylib.com)
-*   raylib is licensed under an unmodified zlib/libpng license (View raylib.h for details)
-*
-*   Copyright (c) 2019 Ramon Santamaria (@raysan5)
-*
-********************************************************************************************/
-
-
 #include "parallax.h"
-
+#include "Source.h"
+using namespace Game;
 /*int main(void)
 {
-	parallax();
+	init_parallax();
 	return 0;
-<<<<<<< HEAD
 }*/
 
-=======
+void main() {
+	play();
 }
->>>>>>> 29c7c42a6a3b54237796fb63315eec3cdd18d513

@@ -5,7 +5,6 @@
     <ClCompile Include="parallax.cpp">
       <Filter>pantallas</Filter>
     </ClCompile>
-    <ClCompile Include="Source.cpp" />
     <ClCompile Include="player.cpp">
       <Filter>entities\player</Filter>
     </ClCompile>
@@ -14,6 +13,9 @@
     </ClCompile>
     <ClCompile Include="definitions.cpp">
       <Filter>definitions</Filter>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -32,6 +34,9 @@
     <Filter Include="definitions">
       <UniqueIdentifier>{d1c92692-b21e-4525-aad3-79599336afd0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="game">
+      <UniqueIdentifier>{77f4f33e-0677-483d-bc3f-617daf2ba0e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="parallax.h">
@@ -45,6 +50,9 @@
     </ClInclude>
     <ClInclude Include="definitions.h">
       <Filter>definitions</Filter>
+    </ClInclude>
+    <ClInclude Include="Source.h">
+      <Filter>game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

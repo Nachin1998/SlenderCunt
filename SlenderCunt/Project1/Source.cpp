@@ -1,15 +1,8 @@
-<<<<<<< HEAD
 #include "raylib.h"
 #include "definitions.h"
 #include "player.h"
 #include "enemy.h"
-
-using namespace Game;
-=======
-/*#include "raylib.h"
-
->>>>>>> 29c7c42a6a3b54237796fb63315eec3cdd18d513
-
+#include "parallax.h"
 
 namespace Game {
 	struct Floor {
@@ -38,32 +31,19 @@ namespace Game {
 
 		InitWindow(screenWidth, screenHeight, "sample game: floppy");
 
-<<<<<<< HEAD
 		InitGame();
-=======
-int main()
-{
-	InitWindow(screenWidth, screenHeight, "NIGGERS");
->>>>>>> 29c7c42a6a3b54237796fb63315eec3cdd18d513
 
 		SetTargetFPS(60);
 
-<<<<<<< HEAD
 		while (!WindowShouldClose())
 		{
 			UpdateDrawFrame();
 		}
-=======
-
-	SetTargetFPS(60);
->>>>>>> 29c7c42a6a3b54237796fb63315eec3cdd18d513
 
 		UnloadGame();
 
 		CloseWindow();
 	}
-
-
 	void InitGame()
 	{
 
@@ -73,7 +53,6 @@ int main()
 		floor.rec.y = screenHeight - 50;
 		floor.rec.height = 10;
 		floor.rec.width = screenWidth;
-
 
 
 		healthBar.rec.x = 20;
@@ -171,16 +150,3 @@ int main()
 		DrawGame();
 	}
 }
-
-<<<<<<< HEAD
-void main()
-{
-	play();
-}
-=======
-void UpdateDrawFrame()
-{
-	UpdateGame();
-	DrawGame();
-}*/
->>>>>>> 29c7c42a6a3b54237796fb63315eec3cdd18d513
