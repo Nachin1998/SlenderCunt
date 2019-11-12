@@ -7,7 +7,7 @@ namespace Game {
 		enemy.rec.height = 20;
 		enemy.rec.width = 20;
 		enemy.rec.x = screenWidth - 10;
-		enemy.rec.y = screenHeight - 50 - enemy.rec.width;
+		enemy.rec.y = screenHeight - 20 - enemy.rec.width;
 		enemy.color = RED;
 	}
 
@@ -16,6 +16,8 @@ namespace Game {
 	}
 
 	void updateEnemy() {
+		if (IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT)) enemy.rec.x -= enemySpeed;
+		if (IsKeyDown(KEY_A) || IsKeyDown(KEY_LEFT))  enemy.rec.x += enemySpeed;
 		enemy.rec.x--;
 	}
 

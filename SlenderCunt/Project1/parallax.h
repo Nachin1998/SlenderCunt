@@ -14,4 +14,7 @@ namespace Game {
 	extern Texture2D foreground;
 
 	void init_parallax();
+	void draw_parallax();
+	void update_parallax();
+	void unload_parallax();
 }

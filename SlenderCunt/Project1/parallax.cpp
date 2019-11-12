@@ -14,12 +14,6 @@ namespace Game {
 
 	void init_parallax()
 	{
-		// Initialization
-	//--------------------------------------------------------------------------------------
-
-
-		// NOTE: Be careful, background width must be equal or bigger than screen width
-		// if not, texture should be draw more than two times for scrolling effect
 
 
 		foo = LoadImage("../res/BackGround.png");
@@ -54,61 +48,22 @@ namespace Game {
 
 
 	}
-	void draw()
+	void draw_parallax()
 	{
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			if (IsKeyDown(KEY_D))
-			{
-				scrollingBack -= 0.1f;
-				scrollingMid -= 0.5f;
-				scrollingFore -= 1.0f;
-			}
-			else if (IsKeyDown(KEY_A))
-			{
-				scrollingBack += 0.1f;
-				scrollingMid += 0.5f;
-				scrollingFore += 1.0f;
-			}
-			// NOTE: Texture is scaled twice its size, so it sould be considered on scrolling
+		// Draw background image twice
+		DrawTextureEx(background, { scrollingBack, 0 }, 0.0f, 1.0f, WHITE);
+		DrawTextureEx(background, { background.width * 2 + scrollingBack, 0 }, 0.0f, 2.0f, WHITE);
 
-			if (scrollingBack <= -background.width * 2) scrollingBack = 0;
-			if (scrollingMid <= -midground.width * 2) scrollingMid = 0;
-			//if (scrollingFore <= -foreground.width * 2) scrollingFore = 0;
+		// Draw midground image twice
+		DrawTextureEx(midground, { scrollingMid, 0 }, 0.0f, 2.0f, WHITE);
+		DrawTextureEx(midground, { midground.width * 2 + scrollingMid, 0 }, 0.0f, 2.0f, WHITE);
 
-			if (scrollingBack >= 0) scrollingBack = 0;
-			if (scrollingMid >= 0) scrollingMid = 0;
-			if (scrollingFore >= 0) scrollingFore = 0;
-
-			//----------------------------------------------------------------------------------
-
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
-
-			ClearBackground(GetColor(0x052c46ff));
-
-			// NOTE: Texture is scaled twice its size
-			// Draw background image twice
-			DrawTextureEx(background, { scrollingBack, 0 }, 0.0f, 1.0f, WHITE);
-			DrawTextureEx(background, { background.width * 2 + scrollingBack, 0 }, 0.0f, 2.0f, WHITE);
-
-			// Draw midground image twice
-			DrawTextureEx(midground, { scrollingMid, 0 }, 0.0f, 2.0f, WHITE);
-			DrawTextureEx(midground, { midground.width * 2 + scrollingMid, 0 }, 0.0f, 2.0f, WHITE);
-
-			// Draw foreground image twice
-			DrawTextureEx(foreground, { scrollingFore, -20 }, 0.0f, 2.0f, WHITE);
-			DrawTextureEx(foreground, { foreground.width * 2 + scrollingFore, -20 }, 0.0f, 2.0f, WHITE);
-
-
-
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+		// Draw foreground image twice
+		DrawTextureEx(foreground, { scrollingFore, -20 }, 0.0f, 2.0f, WHITE);
+		DrawTextureEx(foreground, { foreground.width * 2 + scrollingFore, -20 }, 0.0f, 2.0f, WHITE);
+	}
+	void unload_parallax()
+	{
 
 		// De-Initialization
 		//--------------------------------------------------------------------------------------
@@ -116,8 +71,31 @@ namespace Game {
 		UnloadTexture(midground);   // Unload midground texture
 		UnloadTexture(foreground);  // Unload foreground texture
 
-		CloseWindow();              // Close window and OpenGL context
-		//--------------------------------------------------------------------------------------
+	}
+	void update_parallax()
+	{
+		// Update
+			//----------------------------------------------------------------------------------
+		if (IsKeyDown(KEY_D))
+		{
+			scrollingBack -= 0.1f;
+			scrollingMid -= 0.5f;
+			scrollingFore -= 1.0f;
+		}
+		else if (IsKeyDown(KEY_A))
+		{
+			scrollingBack += 0.1f;
+			scrollingMid += 0.5f;
+			scrollingFore += 1.0f;
+		}
+		// NOTE: Texture is scaled twice its size, so it sould be considered on scrolling
 
+		if (scrollingBack <= -background.width * 2) scrollingBack = 0;
+		if (scrollingMid <= -midground.width * 2) scrollingMid = 0;
+		if (scrollingFore <= -foreground.width * 2) scrollingFore = 0;
+
+		if (scrollingBack >= 0) scrollingBack = 0;
+		if (scrollingMid >= 0) scrollingMid = 0;
+		if (scrollingFore >= 0) scrollingFore = 0;
 	}
 }

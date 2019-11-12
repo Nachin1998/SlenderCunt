@@ -44,9 +44,6 @@ namespace Game {
 	}
 
 	void updatePlayer() {
-		if (IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT)) warrior.rec.x += 2.5f;
-		if (IsKeyDown(KEY_A) || IsKeyDown(KEY_LEFT)) warrior.rec.x -= 2.5f;
-		
 		if (CheckCollisionRecs(warrior.rec, enemy.rec)) {
 			enemy.color = BLUE;
 			healthBar.rec.width -= 3;

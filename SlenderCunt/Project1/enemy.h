@@ -2,6 +2,7 @@
 #define ENEMY_H
 #include "raylib.h"
 namespace Game {
+	const float enemySpeed = 2.5f;
 	struct Enemy {
 		Rectangle rec;
 		Color color;

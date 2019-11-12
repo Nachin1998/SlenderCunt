@@ -8,7 +8,8 @@ namespace Game {
 	struct Floor {
 		Rectangle rec;
 		Color color;
-	}floor;
+	};
+	Floor floor;
 
 	static void InitGame();
 	static void UpdateGame();
@@ -35,11 +36,11 @@ namespace Game {
 	}
 	void InitGame()
 	{
-
+		init_parallax();
 		initPlayer();
 		initEnemy();
 		floor.rec.x = 0;
-		floor.rec.y = screenHeight - 50;
+		floor.rec.y = screenHeight - 20;
 		floor.rec.height = 10;
 		floor.rec.width = screenWidth;
 
@@ -60,7 +61,7 @@ namespace Game {
 
 				updatePlayer();
 				
-
+				update_parallax();
 
 				if (CheckCollisionRecs(warrior.rec, floor.rec)) touchingFloor = true;
 				else touchingFloor = false;
@@ -90,6 +91,7 @@ namespace Game {
 		ClearBackground(RAYWHITE);
 
 		if (!gameOver)
+		draw_parallax();
 
 		drawPlayer();
 		drawEnemy();
