@@ -4,8 +4,8 @@ void parallax()
 {
 	// Initialization
 //--------------------------------------------------------------------------------------
-	const int screenWidth = 1080;
-	const int screenHeight = 920;
+	const int screenWidth = 800;
+	const int screenHeight = 450;
 
 	InitWindow(screenWidth, screenHeight, "raylib [textures] example - background scrolling");
 

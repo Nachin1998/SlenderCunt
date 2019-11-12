@@ -6,15 +6,45 @@
       <Filter>pantallas</Filter>
     </ClCompile>
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="player.cpp">
+      <Filter>entities\player</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy.cpp">
+      <Filter>entities\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="definitions.cpp">
+      <Filter>definitions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="pantallas">
       <UniqueIdentifier>{7a28e264-f413-44ec-9157-e533fa9c0a18}</UniqueIdentifier>
     </Filter>
+    <Filter Include="entities">
+      <UniqueIdentifier>{e99eb61f-2ca5-424e-af29-42064803319e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="entities\player">
+      <UniqueIdentifier>{74c9c697-2a5e-43bb-9a65-ec4fcc11ec1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="entities\enemy">
+      <UniqueIdentifier>{bb008169-9d0c-438e-bb1f-83428ff6dd6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="definitions">
+      <UniqueIdentifier>{d1c92692-b21e-4525-aad3-79599336afd0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="parallax.h">
       <Filter>pantallas</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>entities\player</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy.h">
+      <Filter>entities\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="definitions.h">
+      <Filter>definitions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

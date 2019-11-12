@@ -10,10 +10,11 @@
 ********************************************************************************************/
 
 
-/*#include "parallax.h"
+#include "parallax.h"
 
-int main(void)
+/*int main(void)
 {
 	parallax();
 	return 0;
 }*/
+
