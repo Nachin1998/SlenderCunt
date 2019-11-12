@@ -10,16 +10,6 @@ namespace Game {
 		Color color;
 	}floor;
 
-	struct HealthBar {
-		Rectangle rec;
-		Color color;
-	}healthBar;
-
-	struct StaminaBar {
-		Rectangle rec;
-		Color color;
-	}staminaBar;
-
 	static void InitGame();
 	static void UpdateGame();
 	static void DrawGame();
@@ -28,8 +18,7 @@ namespace Game {
 
 	void play()
 	{
-
-		InitWindow(screenWidth, screenHeight, "sample game: floppy");
+		InitWindow(screenWidth, screenHeight, "SlenderBoi");
 
 		InitGame();
 
@@ -54,17 +43,6 @@ namespace Game {
 		floor.rec.height = 10;
 		floor.rec.width = screenWidth;
 
-
-		healthBar.rec.x = 20;
-		healthBar.rec.y = 20;
-		healthBar.rec.height = 15;
-		healthBar.rec.width = 200;
-
-		staminaBar.rec.x = 20;
-		staminaBar.rec.y = 35;
-		staminaBar.rec.height = 15;
-		staminaBar.rec.width = 150;
-
 		gameOver = false;
 		superfx = false;
 		pause = false;
@@ -81,11 +59,7 @@ namespace Game {
 				updateEnemy();
 
 				updatePlayer();
-				if (CheckCollisionRecs(warrior.rec, enemy.rec)) {
-					enemy.color = BLUE;
-					healthBar.rec.width -= 3;
-				}
-				else enemy.color = RED;
+				
 
 
 				if (CheckCollisionRecs(warrior.rec, floor.rec)) touchingFloor = true;
@@ -117,7 +91,7 @@ namespace Game {
 
 		if (!gameOver)
 
-			drawPlayer();
+		drawPlayer();
 		drawEnemy();
 		DrawRectangleRec(floor.rec, BLACK);
 
@@ -126,15 +100,8 @@ namespace Game {
 			DrawRectangle(0, 0, screenWidth, screenHeight, WHITE);
 			superfx = false;
 		}
-
-		DrawRectangleRec(healthBar.rec, RED);
-		DrawRectangleRec(staminaBar.rec, GREEN);
-		DrawRectangleLines(healthBar.rec.x, healthBar.rec.y, 200, healthBar.rec.height, BLACK);
-		DrawRectangleLinesEx(staminaBar.rec, 3, BLACK);
-
+	
 		if (pause) DrawText("Paused", screenWidth / 2 - MeasureText("Paused", 40) / 2, screenHeight / 2 - 40, 40, GRAY);
-
-		else DrawText("PRESS [ENTER] TO PLAY AGAIN", GetScreenWidth() / 2 - MeasureText("PRESS [ENTER] TO PLAY AGAIN", 20) / 2, GetScreenHeight() / 2 - 50, 20, GRAY);
 
 		EndDrawing();
 	}
