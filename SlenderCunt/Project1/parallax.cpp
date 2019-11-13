@@ -3,8 +3,8 @@
 
 namespace Game {
 
-	Image foo;
-	Image* asd;
+	Image aux;
+	Image* ptr;
 	float scrollingBack;
 	float scrollingMid;
 	float scrollingFore;
@@ -14,36 +14,35 @@ namespace Game {
 
 	void init_parallax()
 	{
-		foo = LoadImage("../res/BackGround.png");
-		asd = &foo;
+		aux = LoadImage("../res/BackGround.png");
+		ptr = &aux;
 
-		ImageResize(asd, screenWidth * 2, screenHeight);
+		ImageResize(ptr, screenWidth * 2, screenHeight);
 
 
-		background = LoadTextureFromImage(foo);
+		background = LoadTextureFromImage(aux);
 
-		UnloadImage(foo);
+		UnloadImage(aux);
 
-		foo = LoadImage("../res/MiddleGround.png");
-		asd = &foo;
+		aux = LoadImage("../res/MiddleGround.png");
+		ptr = &aux;
 
-		ImageResize(asd, screenWidth / 2, screenHeight / 2);
+		ImageResize(ptr, screenWidth / 2, screenHeight / 2);
 
-		midground = LoadTextureFromImage(foo);
+		midground = LoadTextureFromImage(aux);
 
-		UnloadImage(foo);
+		UnloadImage(aux);
 
-		foo = LoadImage("../res/ForeGround.png");
-		asd = &foo;
+		aux = LoadImage("../res/ForeGround.png");
+		ptr = &aux;
 
-		ImageResize(asd, screenWidth, screenHeight / 1.8f);
+		ImageResize(ptr, screenWidth, screenHeight / 1.8f);
 
-		foreground = LoadTextureFromImage(foo);
+		foreground = LoadTextureFromImage(aux);
 
-		UnloadImage(foo);
+		UnloadImage(aux);
 
 		//--------------------------------------------------------------------------------------
-
 
 	}
 	void draw_parallax()
@@ -86,6 +85,7 @@ namespace Game {
 			scrollingMid += 0.5f;
 			scrollingFore += 1.0f;
 		}
+
 		// NOTE: Texture is scaled twice its size, so it sould be considered on scrolling
 
 		if (scrollingBack <= -background.width * 2) scrollingBack = 0;

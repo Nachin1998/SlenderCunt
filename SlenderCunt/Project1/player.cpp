@@ -3,6 +3,7 @@
 #include "game.h"
 #include "definitions.h"
 #include <iostream>
+
 namespace Game {
 
 	void attack();
@@ -28,7 +29,7 @@ namespace Game {
 		warrior.attackDamage = 15.0f;
 		warrior.active = true;
 		warrior.aim = true;
-		warrior.rec.height = 20;
+		warrior.rec.height = 40;
 		warrior.rec.width = 20;
 		warrior.rec.x = 100;
 		warrior.rec.y = 400 - warrior.rec.height;
@@ -49,6 +50,8 @@ namespace Game {
 		attackArea.y = warrior.rec.y+30;
 		attackArea.height =20;
 		attackArea.width = 80;
+
+
 	}
 
 	void drawPlayer() {
@@ -77,6 +80,7 @@ namespace Game {
 			attackArea.y = warrior.rec.y;
 		}
 
+
 		healthBar.rec.width = warrior.health;
 
 		if (IsKeyPressed(KEY_SPACE) && !gameOver && touchingFloor) {
@@ -88,9 +92,10 @@ namespace Game {
 	}
 
 	void attack() {
-		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && CheckCollisionRecs(attackArea, enemy.rec)) {
-			enemy.color = RAYWHITE;
-			enemy.health -= warrior.attackDamage;
+		for(int i = 0; i < cantSlimes; i++)
+		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && CheckCollisionRecs(attackArea, slime[i].rec)) {
+			slime[i].color = RAYWHITE;
+			slime[i].health -= warrior.attackDamage;
 		}
 	}
 }

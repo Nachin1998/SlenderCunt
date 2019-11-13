@@ -4,42 +4,69 @@
 #include "definitions.h"
 
 namespace Game {
-	Enemy enemy;
+	Enemy slime[cantSlimes];
+	Enemy medusa[cantMedusa];
 	void initEnemy() {
-		enemy.health = 100.0f;
-		enemy.active = true;
-		enemy.rec.height = 20;
-		enemy.rec.width = 20;
-		enemy.rec.x = screenWidth - 10;
-		enemy.rec.y = 400 - enemy.rec.height;
-		enemy.color = RED;
+
+		for (int i = 0; i < cantSlimes; i++)
+		{
+			slime[i].health = 100.0f;
+			slime[i].active = true;
+			slime[i].rec.height = 20;
+			slime[i].rec.width = 20;
+			slime[i].rec.x = GetRandomValue(screenWidth / 2,screenWidth);
+			slime[i].rec.y = screenHeight - 20 - slime[i].rec.width;
+			slime[i].color = RED;
+		}
+
+		for (int i = 0; i < cantMedusa; i++)
+		{
+			medusa[i].health = 100.0f;
+			medusa[i].active = true;
+			medusa[i].rec.height = 20;
+			medusa[i].rec.width = 20;
+			medusa[i].rec.x = screenWidth - 10;
+			medusa[i].rec.y = GetRandomValue(0, GetScreenHeight());
+			medusa[i].color = BLUE;
+		}
 	}
 
 	void drawEnemy() {
-		if (enemy.active) 
-			DrawRectangleRec(enemy.rec, enemy.color);
+		for (int i = 0; i < cantSlimes; i++)
+			if (slime[i].active)
+				DrawRectangleRec(slime[i].rec, slime[i].color);
+
+		for (int i = 0; i < cantMedusa; i++)
+			if (medusa[i].active)
+				DrawRectangleRec(medusa[i].rec, medusa[i].color);
 	}
 
 	void updateEnemy() {
-		if (enemy.health > 1)enemy.active = true;
-		else enemy.active = false;
+		for (int i = 0; i < cantSlimes; i++)
+		{
 
-		if (enemy.active) {
-			if (IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT)) enemy.rec.x -= enemySpeed;
-			if (IsKeyDown(KEY_A) || IsKeyDown(KEY_LEFT))  enemy.rec.x += enemySpeed;
-			enemy.rec.x--;
+			if (slime[i].health > 1)slime[i].active = true;
+			else slime[i].active = false;
 
-			if (CheckCollisionRecs(enemy.rec, warrior.rec)) {
-				enemy.color = BLUE;
-				warrior.health -= 3;
+			if (slime[i].active) {
+				if (IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT)) slime[i].rec.x -= enemySpeed;
+				if (IsKeyDown(KEY_A) || IsKeyDown(KEY_LEFT))  slime[i].rec.x += enemySpeed;
+				slime[i].rec.x--;
+
+				if (CheckCollisionRecs(slime[i].rec, warrior.rec)) {
+					slime[i].color = BLUE;
+					warrior.health -= 3;
+				}
+				else
+					slime[i].color = RED;
+
+				if (slime[i].rec.x < 0 - slime[i].rec.width) slime[i].rec.x = screenWidth;
 			}
-			else
-				enemy.color = RED;
-
-			if (enemy.rec.x < 0 - enemy.rec.width) enemy.rec.x = screenWidth;
 		}
 
-		gravity(enemy.rec);
+		for (int i = 0; i < cantSlimes; i++) {
+			gravity(slime[i].rec);
+		}
 	}
 
 }
