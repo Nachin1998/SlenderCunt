@@ -1,5 +1,6 @@
 #include "enemy.h"
 #include "player.h"
+#include "game.h"
 #include "definitions.h"
 
 namespace Game {
@@ -8,6 +9,7 @@ namespace Game {
 	Enemy slime[cantSlimes];
 	Enemy medusa[cantMedusa];
 	void initEnemy() {
+
 		for (int i = 0; i < cantSlimes; i++)
 		{
 			slime[i].health = 100.0f;
@@ -68,6 +70,8 @@ namespace Game {
 			}
 		}
 
+		for (int i = 0; i < cantSlimes; i++) {
+			gravity(slime[i].rec);
 		//Medusa Movement
 		for (int i = 0; i < cantMedusa; i++)
 		{

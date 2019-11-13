@@ -147,14 +147,14 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="parallax.cpp" />
     <ClCompile Include="player.cpp" />
-    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="game.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="definitions.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="parallax.h" />
     <ClInclude Include="player.h" />
-    <ClInclude Include="Source.h" />
+    <ClInclude Include="game.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

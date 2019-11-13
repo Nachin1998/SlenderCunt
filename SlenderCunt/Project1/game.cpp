@@ -41,8 +41,13 @@ namespace Game {
 		init_parallax();
 		initPlayer();
 		initEnemy();
-		initFloor();
 
+		floor.rec.x = 0;
+		floor.rec.y = screenHeight - 13;
+		floor.rec.height = 10;
+		floor.rec.width = screenWidth;
+
+		initFloor();
 
 		gameOver = false;
 		superfx = false;
@@ -96,6 +101,7 @@ namespace Game {
 
 		drawPlayer();
 		drawEnemy();
+
 		DrawRectangleRec(floor.rec, BLACK);
 
 		if (superfx)
@@ -107,6 +113,16 @@ namespace Game {
 		if (pause) DrawText("Paused", screenWidth / 2 - MeasureText("Paused", 40) / 2, screenHeight / 2 - 40, 40, GRAY);
 
 		EndDrawing();
+	}
+
+	void gravity(Rectangle &rec) {
+		bool touchingFloor;
+
+		if (CheckCollisionRecs(rec, floor.rec)) touchingFloor = true;
+		else touchingFloor = false;
+
+		if (!touchingFloor)
+			rec.y += 3;
 	}
 
 	void UnloadGame()

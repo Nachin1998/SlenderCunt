@@ -1,5 +1,7 @@
 #include "player.h"
 #include "enemy.h"
+#include "game.h"
+#include "definitions.h"
 #include <iostream>
 
 namespace Game {
@@ -80,7 +82,12 @@ namespace Game {
 
 
 		healthBar.rec.width = warrior.health;
-		
+
+		if (IsKeyPressed(KEY_SPACE) && !gameOver && touchingFloor) {
+			int jumpAltitude = warrior.rec.y - 100;
+			while (jumpAltitude <= warrior.rec.y) warrior.rec.y -= 0.001f;
+		}
+		gravity(warrior.rec);
 		attack();
 	}
 
