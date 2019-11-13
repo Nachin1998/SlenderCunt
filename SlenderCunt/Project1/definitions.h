@@ -1,5 +1,6 @@
 #ifndef DEFINITIONS_H
 #define	DEFINITIONS_H
+#include <cmath>
 
 namespace Game {
 	static const int screenWidth = 800;
