@@ -40,7 +40,7 @@ namespace Game {
 		initPlayer();
 		initEnemy();
 		floor.rec.x = 0;
-		floor.rec.y = screenHeight - 20;
+		floor.rec.y = screenHeight - 13;
 		floor.rec.height = 10;
 		floor.rec.width = screenWidth;
 
@@ -62,16 +62,6 @@ namespace Game {
 				updatePlayer();
 				
 				update_parallax();
-
-				if (CheckCollisionRecs(warrior.rec, floor.rec)) touchingFloor = true;
-				else touchingFloor = false;
-
-				if (IsKeyPressed(KEY_SPACE) && !gameOver && touchingFloor) {
-					int jumpAltitude = warrior.rec.y - 100;
-					while (jumpAltitude <= warrior.rec.y) warrior.rec.y -= 0.001f;
-				}
-
-				if (!touchingFloor) warrior.rec.y += 3;
 			}
 		}
 		else
@@ -95,6 +85,7 @@ namespace Game {
 
 		drawPlayer();
 		drawEnemy();
+
 		DrawRectangleRec(floor.rec, BLACK);
 
 		if (superfx)
@@ -106,6 +97,16 @@ namespace Game {
 		if (pause) DrawText("Paused", screenWidth / 2 - MeasureText("Paused", 40) / 2, screenHeight / 2 - 40, 40, GRAY);
 
 		EndDrawing();
+	}
+
+	void gravity(Rectangle &rec) {
+		bool touchingFloor;
+
+		if (CheckCollisionRecs(rec, floor.rec)) touchingFloor = true;
+		else touchingFloor = false;
+
+		if (!touchingFloor)
+			rec.y += 3;
 	}
 
 	void UnloadGame()

@@ -1,5 +1,6 @@
 #include "enemy.h"
 #include "player.h"
+#include "game.h"
 #include "definitions.h"
 
 namespace Game {
@@ -10,7 +11,7 @@ namespace Game {
 		enemy.rec.height = 20;
 		enemy.rec.width = 20;
 		enemy.rec.x = screenWidth - 10;
-		enemy.rec.y = screenHeight - 20 - enemy.rec.width;
+		enemy.rec.y = 400 - enemy.rec.height;
 		enemy.color = RED;
 	}
 
@@ -37,6 +38,8 @@ namespace Game {
 
 			if (enemy.rec.x < 0 - enemy.rec.width) enemy.rec.x = screenWidth;
 		}
+
+		gravity(enemy.rec);
 	}
 
 }

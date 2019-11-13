@@ -14,7 +14,7 @@
     <ClCompile Include="definitions.cpp">
       <Filter>definitions</Filter>
     </ClCompile>
-    <ClCompile Include="Source.cpp">
+    <ClCompile Include="game.cpp">
       <Filter>game</Filter>
     </ClCompile>
   </ItemGroup>
@@ -51,7 +51,7 @@
     <ClInclude Include="definitions.h">
       <Filter>definitions</Filter>
     </ClInclude>
-    <ClInclude Include="Source.h">
+    <ClInclude Include="game.h">
       <Filter>game</Filter>
     </ClInclude>
   </ItemGroup>
