@@ -62,9 +62,6 @@ namespace Game {
 
 				if (slime[i].rec.x < 0 - slime[i].rec.width) slime[i].rec.x = screenWidth;
 			}
-		}
-
-		for (int i = 0; i < cantSlimes; i++) {
 			gravity(slime[i].rec);
 		}
 	}

@@ -5,8 +5,9 @@
 #include <iostream>
 
 namespace Game {
-
+	float knockback = 10.f;
 	void attack();
+	void jump();
 
 	Warrior warrior;
 	Rectangle attackArea;
@@ -68,8 +69,17 @@ namespace Game {
 	}
 
 	void updatePlayer() {
-		if (IsKeyDown(KEY_D)) warrior.aim = true;
-		if (IsKeyDown(KEY_A)) warrior.aim = false;
+		if (IsKeyDown(KEY_D)) { 
+			warrior.aim = true;
+			knockback *= 3;
+		}else
+			knockback = 10.0f;
+		if (IsKeyDown(KEY_A)) { 
+			warrior.aim = false;
+			knockback *= 3;
+		}else
+			knockback = 10.0f;
+
 
 		if (warrior.aim) {
 			attackArea.x = warrior.rec.x+20;
@@ -83,19 +93,26 @@ namespace Game {
 
 		healthBar.rec.width = warrior.health;
 
-		if (IsKeyPressed(KEY_SPACE) && !gameOver && touchingFloor) {
-			int jumpAltitude = warrior.rec.y - 100;
-			while (jumpAltitude <= warrior.rec.y) warrior.rec.y -= 0.001f;
-		}
 		gravity(warrior.rec);
+		jump();
 		attack();
 	}
 
 	void attack() {
-		for(int i = 0; i < cantSlimes; i++)
-		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && CheckCollisionRecs(attackArea, slime[i].rec)) {
-			slime[i].color = RAYWHITE;
-			slime[i].health -= warrior.attackDamage;
+		for(int i = 0 ; i<cantSlimes ; i++){
+			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && CheckCollisionRecs(attackArea, slime[i].rec)) {
+				slime[i].color = RAYWHITE;
+				slime[i].health -= warrior.attackDamage;
+				slime[i].rec.x += knockback;
+			}
+		}
+	}
+
+	void jump() {
+		if (IsKeyPressed(KEY_SPACE) && !gameOver && touchingFloor) {
+			bool jumping = true;
+			if (jumping)warrior.rec.y--;
+		
 		}
 	}
 }
