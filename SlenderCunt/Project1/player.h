@@ -10,9 +10,11 @@ namespace Game {
 		bool active;
 		Rectangle rec;
 		Color color;
+		Texture2D sprite;
 	};
 
 	extern Warrior warrior;
+	extern Image aux;
 
 	void initPlayer();
 	void drawPlayer();

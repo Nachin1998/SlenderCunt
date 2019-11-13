@@ -2,10 +2,9 @@
 #include "raylib.h"
 
 namespace Game {
-	void parallax();
 
-	extern Image foo;
-	extern Image* asd;
+	extern Image aux;
+	extern Image* ptr;
 	extern float scrollingBack;
 	extern float scrollingMid;
 	extern float scrollingFore;

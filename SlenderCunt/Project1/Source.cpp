@@ -16,7 +16,9 @@ namespace Game {
 	static void DrawGame();
 	static void UnloadGame();
 	static void UpdateDrawFrame();
-
+	static void initFloor();
+	bool jumping;
+	int jumpAltitude;
 	void play()
 	{
 		InitWindow(screenWidth, screenHeight, "SlenderBoi");
@@ -39,10 +41,8 @@ namespace Game {
 		init_parallax();
 		initPlayer();
 		initEnemy();
-		floor.rec.x = 0;
-		floor.rec.y = screenHeight - 20;
-		floor.rec.height = 10;
-		floor.rec.width = screenWidth;
+		initFloor();
+
 
 		gameOver = false;
 		superfx = false;
@@ -67,7 +67,8 @@ namespace Game {
 				else touchingFloor = false;
 
 				if (IsKeyPressed(KEY_SPACE) && !gameOver && touchingFloor) {
-					int jumpAltitude = warrior.rec.y - 100;
+					jumping = true;
+					
 					while (jumpAltitude <= warrior.rec.y) warrior.rec.y -= 0.001f;
 				}
 
@@ -117,5 +118,14 @@ namespace Game {
 	{
 		UpdateGame();
 		DrawGame();
+	}
+	void initFloor()
+	{
+		floor.rec.x = 0;
+		floor.rec.y = screenHeight - 20;
+		floor.rec.height = 10;
+		floor.rec.width = screenWidth;
+
+		jumpAltitude = warrior.rec.y - 100;
 	}
 }
