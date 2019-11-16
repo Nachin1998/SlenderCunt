@@ -46,6 +46,7 @@ namespace Game {
 	void updateEnemy() {
 		enemyMovement();
 	}
+
 	void enemyMovement()
 	{
 		//Slime movement
@@ -69,49 +70,50 @@ namespace Game {
 				if (slime[i].rec.x < 0 - slime[i].rec.width) slime[i].rec.x = screenWidth;
 			}
 			gravity(slime[i].rec);
-		//Medusa Movement
-		for (int i = 0; i < cantMedusa; i++)
-		{
-			if (medusa[i].health >= 1) medusa[i].active = true;
-			else medusa[i].active = false;
-
-			if (medusa[i].active)
+			//Medusa Movement
+			for (int i = 0; i < cantMedusa; i++)
 			{
-				if (IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT)) medusa[i].rec.x -= enemySpeed;
-				if (IsKeyDown(KEY_A) || IsKeyDown(KEY_LEFT))  medusa[i].rec.x += enemySpeed;
+				if (medusa[i].health >= 1) medusa[i].active = true;
+				else medusa[i].active = false;
 
-				if (medusa[i].rec.x < 0 - slime[i].rec.width)
+				if (medusa[i].active)
 				{
-					medusa[i].rec.x = screenWidth;
-					medusa[i].rec.y = GetRandomValue(0, GetScreenHeight() - (medusa[i].rec.height * 2));
-				}
+					if (IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT)) medusa[i].rec.x -= enemySpeed;
+					if (IsKeyDown(KEY_A) || IsKeyDown(KEY_LEFT))  medusa[i].rec.x += enemySpeed;
 
-				for (int a = 0; a < cantMedusa; a++)
-				{
-					switch (upMovement)
+					if (medusa[i].rec.x < 0 - slime[i].rec.width)
 					{
-					case true:
-						medusa[i].rec.y += sin(screenHeight);
-						if (medusa[i].rec.y >= screenHeight)
-						{
-							upMovement = false;
-						}
-						break;
-					case false:
-						medusa[i].rec.y -= sin(screenHeight);
-						if (medusa[i].rec.y < screenHeight - 100)
-						{
-							upMovement = true;
-						}
-						break;
+						medusa[i].rec.x = screenWidth;
+						medusa[i].rec.y = GetRandomValue(0, GetScreenHeight() - (medusa[i].rec.height * 2));
 					}
-				}
 
-				if (CheckCollisionRecs(medusa[i].rec, warrior.rec)) {
-					medusa[i].color = BLUE;
-					warrior.health -= 3;
+					for (int a = 0; a < cantMedusa; a++)
+					{
+						switch (upMovement)
+						{
+						case true:
+							medusa[i].rec.y += sin(screenHeight);
+							if (medusa[i].rec.y >= screenHeight)
+							{
+								upMovement = false;
+							}
+							break;
+						case false:
+							medusa[i].rec.y -= sin(screenHeight);
+							if (medusa[i].rec.y < screenHeight - 100)
+							{
+								upMovement = true;
+							}
+							break;
+						}
+					}
+
+					if (CheckCollisionRecs(medusa[i].rec, warrior.rec)) {
+						medusa[i].color = BLUE;
+						warrior.health -= 3;
+					}
+					medusa[i].rec.x--;
 				}
-				medusa[i].rec.x--;
 			}
 		}
 	}

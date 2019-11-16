@@ -1,7 +1,6 @@
-#include "parallax.h"
-#include "game.h"
+#include "mainMenu.h"
 using namespace Game;
 
 void main() {
-	play();
+	menu();
 }

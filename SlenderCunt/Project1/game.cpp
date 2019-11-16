@@ -2,6 +2,7 @@
 #include "definitions.h"
 #include "player.h"
 #include "enemy.h"
+#include "mainMenu.h"
 #include "parallax.h"
 
 namespace Game {
@@ -13,6 +14,7 @@ namespace Game {
 
 	static void InitGame();
 	static void UpdateGame();
+	static void UpdateEntites();
 	static void DrawGame();
 	static void UnloadGame();
 	static void UpdateDrawFrame();
@@ -21,8 +23,6 @@ namespace Game {
 	int jumpAltitude;
 	void play()
 	{
-		InitWindow(screenWidth, screenHeight, "SlenderBoi");
-
 		InitGame();
 
 		SetTargetFPS(60);
@@ -36,6 +36,7 @@ namespace Game {
 
 		CloseWindow();
 	}
+
 	void InitGame()
 	{
 		init_parallax();
@@ -62,11 +63,7 @@ namespace Game {
 
 			if (!pause)
 			{
-				updateEnemy();
-
-				updatePlayer();
-				
-				update_parallax();
+				UpdateEntites();
 
 				if (CheckCollisionRecs(warrior.rec, floor.rec)) touchingFloor = true;
 				else touchingFloor = false;
@@ -143,5 +140,13 @@ namespace Game {
 		floor.rec.width = screenWidth;
 
 		jumpAltitude = warrior.rec.y - 100;
+	}
+
+	void UpdateEntites() {
+
+		updateEnemy();
+		updatePlayer();
+		update_parallax();
+
 	}
 }

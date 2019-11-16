@@ -145,6 +145,7 @@
     <ClCompile Include="definitions.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mainMenu.cpp" />
     <ClCompile Include="parallax.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="game.cpp" />
@@ -152,6 +153,7 @@
   <ItemGroup>
     <ClInclude Include="definitions.h" />
     <ClInclude Include="enemy.h" />
+    <ClInclude Include="mainMenu.h" />
     <ClInclude Include="parallax.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="game.h" />
