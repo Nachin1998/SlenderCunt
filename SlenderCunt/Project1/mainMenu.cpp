@@ -1,7 +1,5 @@
 #include "mainMenu.h"
-#include "raylib.h"
-#include "Source.h"
-#include "definitions.h"
+
 namespace Game {
 
 	Vector2 mouse_pos;
@@ -22,27 +20,39 @@ namespace Game {
 		}
 	}
 
-	void draw_buttons()
+	void update_buttons()
 	{
 		for (int i = 0; i < CANT_REC; i++) {
 			if (CheckCollisionPointRec(mouse_pos, buttons[i])) {
 				DrawRectangleRec(buttons[i], GRAY);
-				if (CheckCollisionPointRec(mouse_pos, buttons[1]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+				if (CheckCollisionPointRec(mouse_pos, buttons[2]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) 
+				{
+					ClearBackground(BLACK);
+					DrawText("Loading", screenWidth / 3, screenHeight / 2, 50, RED);
 					play();
+				}
 				if (CheckCollisionPointRec(mouse_pos, buttons[0]) && IsMouseButtonDown(MOUSE_LEFT_BUTTON))
 				{
 					EndDrawing();
 					CloseWindow();
 				}
-				/*if (CheckCollisionPointRec(mouse_pos, buttons[2]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+				if (CheckCollisionPointRec(mouse_pos, buttons[1]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 				{
 					credits = !credits;
-				}*/
+				}
 
 			}
+		}
+	}
+	void draw_buttons()
+	{
+		for (int i = 0; i < CANT_REC; i++) {
+			if (CheckCollisionPointRec(mouse_pos, buttons[i]))
+				DrawRectangleRec(buttons[i], GRAY);
 			else
 				DrawRectangleRec(buttons[i], BROWN);
 		}
+		
 	}
 
 	void menu() {
@@ -58,15 +68,16 @@ namespace Game {
 			ClearBackground(BLACK);
 
 			draw_buttons();
+			update_buttons();
 			DrawText("SlendiBoi", GetScreenWidth() / 3, screenHeight / 2 - 200, 50, LIGHTGRAY);
 
 			DrawText("Exit", buttons[0].x, buttons[0].y, 20, LIGHTGRAY);
-			DrawText("Start", buttons[1].x, buttons[1].y, 20, LIGHTGRAY);
-			//DrawText("Credits", buttons[2].x, buttons[2].y, 20, LIGHTGRAY);
+			DrawText("Start", buttons[2].x, buttons[2].y, 20, LIGHTGRAY);
+			DrawText("Credits", buttons[1].x, buttons[1].y, 20, LIGHTGRAY);
 
 			if (credits)
 			{
-				//
+				draw_credits();
 			}
 
 			DrawText("P to pause", GetScreenWidth() / 2 - 60, screenHeight / 2 + 200, 20, LIGHTGRAY);

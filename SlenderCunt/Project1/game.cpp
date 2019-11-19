@@ -65,6 +65,7 @@ namespace Game {
 			{
 				UpdateEntites();
 
+
 				if (CheckCollisionRecs(warrior.rec, floor.rec)) touchingFloor = true;
 				else touchingFloor = false;
 
@@ -108,6 +109,8 @@ namespace Game {
 		}
 	
 		if (pause) DrawText("Paused", screenWidth / 2 - MeasureText("Paused", 40) / 2, screenHeight / 2 - 40, 40, GRAY);
+
+
 
 		EndDrawing();
 	}

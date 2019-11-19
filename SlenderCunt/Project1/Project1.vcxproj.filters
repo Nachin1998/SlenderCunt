@@ -20,6 +20,9 @@
     <ClCompile Include="mainMenu.cpp">
       <Filter>pantallas</Filter>
     </ClCompile>
+    <ClCompile Include="credits.cpp">
+      <Filter>pantallas</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="pantallas">
@@ -58,6 +61,9 @@
       <Filter>game</Filter>
     </ClInclude>
     <ClInclude Include="mainMenu.h">
+      <Filter>pantallas</Filter>
+    </ClInclude>
+    <ClInclude Include="credits.h">
       <Filter>pantallas</Filter>
     </ClInclude>
   </ItemGroup>
