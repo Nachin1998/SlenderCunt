@@ -6,7 +6,13 @@
 
 namespace Game {
 	float knockback = 10.f;
+	float staminaRegen = 0.1f;
 
+	void initPlayer();
+	void initHealthBar();
+	void initStaminaBar();
+	void initAOI();
+	void initMelee();
 	void meleeUpdate();
 	void meleeAttack();
 	void AOIattack();
@@ -14,7 +20,7 @@ namespace Game {
 	void jump();
 
 	Warrior warrior;
-	Rectangle normalAttackArea;
+	Rectangle meleeAttackArea;
 	Rectangle AOIattackArea;
 
 	struct HealthBar {
@@ -40,26 +46,40 @@ namespace Game {
 		warrior.rec.y = 400 - warrior.rec.height;
 		warrior.color = GRAY;
 
+		initHealthBar();
+		initStaminaBar();
+		initMelee();
+		initAOI();
+	}
+
+	void initHealthBar() {
 		healthBar.rec.x = 20;
 		healthBar.rec.y = 20;
 		healthBar.rec.height = 15;
 		healthBar.rec.width = warrior.health;
 		healthBar.color = RED;
+	}
 
+	void initStaminaBar() {
 		staminaBar.rec.x = 20;
 		staminaBar.rec.y = 35;
 		staminaBar.rec.height = 15;
 		staminaBar.rec.width = 150;
+		staminaBar.color = GREEN;
+	}
 
-		normalAttackArea.x = warrior.rec.x;
-		normalAttackArea.y = warrior.rec.y + 30;
-		normalAttackArea.height = 20;
-		normalAttackArea.width = 80;
-
+	void initAOI() {
 		AOIattackArea.x = warrior.rec.x - 14.3f;
 		AOIattackArea.y = warrior.rec.y + 15;
 		AOIattackArea.height = 50;
 		AOIattackArea.width = 50;
+	}
+
+	void initMelee() {
+		meleeAttackArea.x = warrior.rec.x;
+		meleeAttackArea.y = warrior.rec.y + 30;
+		meleeAttackArea.height = 20;
+		meleeAttackArea.width = 80;
 	}
 
 	void drawPlayer() {
@@ -67,16 +87,11 @@ namespace Game {
 
 		DrawRectangleRec(healthBar.rec, healthBar.color);
 		DrawRectangleLines(healthBar.rec.x, healthBar.rec.y, 200, healthBar.rec.height, WHITE);
-
-		if(staminaBar.rec.width<25){
-			DrawRectangleRec(staminaBar.rec, GREEN);
-		}else
-			DrawRectangleRec(staminaBar.rec, BLUE);
-		
+		DrawRectangleRec(staminaBar.rec, staminaBar.color);
 		DrawRectangleLines(staminaBar.rec.x, staminaBar.rec.y, 150, staminaBar.rec.height, WHITE);
 
 		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-			DrawRectangleLinesEx(normalAttackArea, 4, RED);
+			DrawRectangleLinesEx(meleeAttackArea, 4, RED);
 
 		if (staminaBar.rec.width > 25) {
 			if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
@@ -116,9 +131,11 @@ namespace Game {
 				AOIattackArea.width = 50;
 			}
 		}
+		else 
+			staminaBar.color = BLUE;
 
 		if (staminaBar.rec.width <= 0)staminaBar.rec.width = 0;
-		if (staminaBar.rec.width < 150)staminaBar.rec.width += 0.1f;
+		if (staminaBar.rec.width < 150)staminaBar.rec.width += staminaRegen;
 	}
 
 	void updatePlayer() {
@@ -147,18 +164,18 @@ namespace Game {
 	void meleeUpdate() {
 		meleeAttack();
 		if (warrior.aim) {
-			normalAttackArea.x = warrior.rec.x + 20;
-			normalAttackArea.y = warrior.rec.y;
+			meleeAttackArea.x = warrior.rec.x + 20;
+			meleeAttackArea.y = warrior.rec.y;
 		}
 		else {
-			normalAttackArea.x = warrior.rec.x - 80;
-			normalAttackArea.y = warrior.rec.y;
+			meleeAttackArea.x = warrior.rec.x - 80;
+			meleeAttackArea.y = warrior.rec.y;
 		}
 	}
 
 	void meleeAttack() {
 		for (int i = 0; i < cantSlimes; i++) {
-			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && CheckCollisionRecs(normalAttackArea, slime[i].rec)) {
+			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && CheckCollisionRecs(meleeAttackArea, slime[i].rec)) {
 				slime[i].color = RAYWHITE;
 				slime[i].health -= warrior.attackDamage;
 				slime[i].rec.x += knockback;
