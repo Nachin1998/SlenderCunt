@@ -44,7 +44,7 @@ namespace Game {
 		initEnemy();
 
 		floor.rec.x = 0;
-		floor.rec.y = screenHeight - 13;
+		floor.rec.y = screenHeight;
 		floor.rec.height = 10;
 		floor.rec.width = screenWidth;
 
