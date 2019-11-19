@@ -3,30 +3,78 @@
 #include "Source.h"
 #include "definitions.h"
 namespace Game {
+
+	Vector2 mouse_pos;
+	Rectangle buttons[CANT_REC];
+	int rec_x = screenWidth / 2.5F;
+	int rec_y = screenHeight / 2;
+	bool credits = false;
+	void init_rec()
+	{
+		for (int i = 0; i < CANT_REC; i++)
+		{
+			buttons[i].height = rec_height;
+			buttons[i].width = rec_width;
+			buttons[i].x = (float)rec_x;
+			buttons[i].y = (float)rec_y;
+
+			rec_y -= 45;
+		}
+	}
+
+	void draw_buttons()
+	{
+		for (int i = 0; i < CANT_REC; i++) {
+			if (CheckCollisionPointRec(mouse_pos, buttons[i])) {
+				DrawRectangleRec(buttons[i], GRAY);
+				if (CheckCollisionPointRec(mouse_pos, buttons[1]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+					play();
+				if (CheckCollisionPointRec(mouse_pos, buttons[0]) && IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+				{
+					EndDrawing();
+					CloseWindow();
+				}
+				/*if (CheckCollisionPointRec(mouse_pos, buttons[2]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+				{
+					credits = !credits;
+				}*/
+
+			}
+			else
+				DrawRectangleRec(buttons[i], BROWN);
+		}
+	}
+
 	void menu() {
 		InitWindow(screenWidth, screenHeight, "SlenderBoi");
 		SetTargetFPS(60);
-		
+		init_rec();
+
 		while (!WindowShouldClose())
 		{
+			mouse_pos = GetMousePosition();
 			BeginDrawing();
 
 			ClearBackground(BLACK);
 
-			DrawText("SlendiBoi", GetScreenWidth() / 2 - 70, screenHeight / 2 - 200, 50, LIGHTGRAY);
+			draw_buttons();
 
-			DrawText("Start", GetScreenWidth() / 2 - 180, screenHeight / 2 - 40, 20, LIGHTGRAY);
-			DrawText("(Enter)", GetScreenWidth() / 2 - 190, screenHeight / 2 - 20, 20, LIGHTGRAY);
+			DrawText("SlendiBoi", GetScreenWidth() / 3, screenHeight / 2 - 200, 50, LIGHTGRAY);
 
-			DrawText("Exit", GetScreenWidth() / 2 + 120, screenHeight / 2 - 40, 20, LIGHTGRAY);
-			DrawText("(Escape)", GetScreenWidth() / 2 + 94, screenHeight / 2 - 20, 20, LIGHTGRAY);
+			DrawText("Exit", buttons[0].x, buttons[0].y, 20, LIGHTGRAY);
+			DrawText("Start", buttons[1].x, buttons[1].y, 20, LIGHTGRAY);
+			//DrawText("Credits", buttons[2].x, buttons[2].y, 20, LIGHTGRAY);
+
+			if (credits)
+			{
+				//
+			}
 
 			DrawText("P to pause", GetScreenWidth() / 2 - 60, screenHeight / 2 + 200, 20, LIGHTGRAY);
 
-			if (IsKeyPressed(KEY_ENTER)) {
-				play();
-			}
 			EndDrawing();
+			if (IsKeyPressed(KEY_ENTER)) {
+			}
 		}
 	}
 }

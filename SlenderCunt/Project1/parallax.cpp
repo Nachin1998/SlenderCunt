@@ -73,13 +73,13 @@ namespace Game {
 	{
 		// Update
 			//----------------------------------------------------------------------------------
-		if (IsKeyDown(KEY_D))
+		if (IsKeyDown(KEY_D) || IsKeyDown(KEY_LEFT))
 		{
 			scrollingBack -= 0.1f;
 			scrollingMid -= 0.5f;
 			scrollingFore -= 1.0f;
 		}
-		else if (IsKeyDown(KEY_A))
+		else if (IsKeyDown(KEY_A) || IsKeyDown(KEY_RIGHT))
 		{
 			scrollingBack += 0.1f;
 			scrollingMid += 0.5f;
