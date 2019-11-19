@@ -7,7 +7,7 @@ namespace Game {
 	void enemyMovement();
 	Enemy slime[cantSlimes];
 	Enemy medusa[cantMedusa];
-	float bottomRange = 30, topRange = screenHeight - 100;
+	float bottomRange = 30, topRange = screenHeight - 100, CosSinAux = 0, origY = screenHeight / 2;
 	void initEnemy() {
 
 		for (int i = 0; i < cantSlimes; i++)
@@ -28,7 +28,7 @@ namespace Game {
 			medusa[i].rec.height = 20;
 			medusa[i].rec.width = 20;
 			medusa[i].rec.x = screenWidth - 10;
-			medusa[i].rec.y = GetRandomValue(0, GetScreenHeight());
+			medusa[i].rec.y = screenHeight / 2;
 			medusa[i].color = BLUE;
 		}
 	}
@@ -49,6 +49,7 @@ namespace Game {
 
 	void enemyMovement()
 	{
+		CosSinAux++;
 		//Slime movement
 		for (int i = 0; i < cantSlimes; i++)
 		{
@@ -78,8 +79,8 @@ namespace Game {
 
 				if (medusa[i].active)
 				{
-					if (IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT)) medusa[i].rec.x -= enemySpeed / 4;
-					if (IsKeyDown(KEY_A) || IsKeyDown(KEY_LEFT))  medusa[i].rec.x += enemySpeed / 4;
+					if (IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT)) medusa[i].rec.x -= enemySpeed / 3;
+					if (IsKeyDown(KEY_A) || IsKeyDown(KEY_LEFT))  medusa[i].rec.x += enemySpeed / 3;
 
 					if (medusa[i].rec.x < 0 - medusa[i].rec.width)
 					{
@@ -87,33 +88,12 @@ namespace Game {
 						medusa[i].rec.y = GetRandomValue(0, GetScreenHeight() - (medusa[i].rec.height * 2));
 					}
 
-					if (medusa[i].rec.y <= bottomRange)
-						medusa[i].upMovement = true;
-					else if (medusa[i].rec.y >= topRange)
-						medusa[i].upMovement = false;
-					if (medusa[i].rec.y <= bottomRange - 100)
-						medusa[i].slowMovement = true;
-					else if (medusa[i].rec.y >= topRange + 100)
-						medusa[i].slowMovement = true;
+					if(i == 0)
+						medusa[i].rec.y = ((screenHeight / 4) * sin(CosSinAux * 0.5f * PI / 50)) + origY;
 					else
-						medusa[i].slowMovement = false;
+						medusa[i].rec.y = -((screenHeight / 4) * sin(CosSinAux * 0.5f * PI / 50)) + origY;
 
-					if (medusa[i].slowMovement)
-					{
-						if(medusa[i].upMovement)
-							medusa[i].rec.y += enemySpeed / 4;
-						else
-							medusa[i].rec.y -= enemySpeed / 4;
-					}
-					else
-					{
-						if (medusa[i].upMovement)
-							medusa[i].rec.y += enemySpeed / 2;
-						else
-							medusa[i].rec.y -= enemySpeed / 2;
-					}
-
-					medusa[i].rec.x -= enemySpeed / 5;
+					medusa[i].rec.x -= enemySpeed / 4;
 				}
 
 				if (CheckCollisionRecs(medusa[i].rec, warrior.rec)) {

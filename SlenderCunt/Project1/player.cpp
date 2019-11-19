@@ -68,11 +68,12 @@ namespace Game {
 		DrawRectangleRec(healthBar.rec, healthBar.color);
 		DrawRectangleLines(healthBar.rec.x, healthBar.rec.y, 200, healthBar.rec.height, WHITE);
 
-		if(staminaBar.rec.width<25){
+		if (staminaBar.rec.width < 25) {
 			DrawRectangleRec(staminaBar.rec, GREEN);
-		}else
+		}
+		else
 			DrawRectangleRec(staminaBar.rec, BLUE);
-		
+
 		DrawRectangleLines(staminaBar.rec.x, staminaBar.rec.y, 150, staminaBar.rec.height, WHITE);
 
 		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
@@ -86,7 +87,7 @@ namespace Game {
 	}
 
 	void AOIUpdate() {
-		
+
 		if (staminaBar.rec.width > 25) {
 			AOIattack();
 			if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON)) {
@@ -109,7 +110,7 @@ namespace Game {
 					staminaBar.rec.width -= 40;
 			}
 
-			if (!IsMouseButtonDown(MOUSE_RIGHT_BUTTON)){
+			if (!IsMouseButtonDown(MOUSE_RIGHT_BUTTON)) {
 				AOIattackArea.x = warrior.rec.x - 14.3f;
 				AOIattackArea.y = warrior.rec.y + 15;
 				AOIattackArea.height = 50;
@@ -173,7 +174,13 @@ namespace Game {
 				slime[i].rec.x += AOIattackArea.width;
 			}
 		}
+		for (int i = 0; i < cantSlimes; i++) {
+			if (IsMouseButtonReleased(MOUSE_RIGHT_BUTTON) && CheckCollisionRecs(AOIattackArea, medusa[i].rec)) {
+				medusa[i].rec.x += AOIattackArea.width;
+			}
+		}
 	}
+
 
 	void jump() {
 		if (IsKeyPressed(KEY_SPACE) && !gameOver && touchingFloor) {
