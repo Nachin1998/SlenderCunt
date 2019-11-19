@@ -10,6 +10,7 @@ namespace Game {
 		bool active;
 		Rectangle rec;
 		Color color;
+		bool upMovement, slowMovement;
 	};
 
 	extern Enemy slime[cantSlimes];

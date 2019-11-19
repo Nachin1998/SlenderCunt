@@ -142,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="credits.cpp" />
     <ClCompile Include="definitions.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="main.cpp" />
@@ -151,6 +152,7 @@
     <ClCompile Include="game.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="credits.h" />
     <ClInclude Include="definitions.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="mainMenu.h" />

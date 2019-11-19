@@ -5,9 +5,9 @@
 
 namespace Game {
 	void enemyMovement();
-	bool upMovement, check;
 	Enemy slime[cantSlimes];
 	Enemy medusa[cantMedusa];
+	float bottomRange = 30, topRange = screenHeight - 100;
 	void initEnemy() {
 
 		for (int i = 0; i < cantSlimes; i++)
@@ -81,38 +81,45 @@ namespace Game {
 					if (IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT)) medusa[i].rec.x -= enemySpeed;
 					if (IsKeyDown(KEY_A) || IsKeyDown(KEY_LEFT))  medusa[i].rec.x += enemySpeed;
 
-					if (medusa[i].rec.x < 0 - slime[i].rec.width)
+					if (medusa[i].rec.x < 0 - medusa[i].rec.width)
 					{
 						medusa[i].rec.x = screenWidth;
 						medusa[i].rec.y = GetRandomValue(0, GetScreenHeight() - (medusa[i].rec.height * 2));
 					}
 
-					for (int a = 0; a < cantMedusa; a++)
+					if (medusa[i].rec.y <= bottomRange)
+						medusa[i].upMovement = true;
+					else if (medusa[i].rec.y >= topRange)
+						medusa[i].upMovement = false;
+					if (medusa[i].rec.y <= bottomRange - 100)
+						medusa[i].slowMovement = true;
+					else if (medusa[i].rec.y >= topRange + 100)
+						medusa[i].slowMovement = true;
+					else
+						medusa[i].slowMovement = false;
+
+					if (medusa[i].slowMovement)
 					{
-						switch (upMovement)
-						{
-						case true:
-							medusa[i].rec.y += sin(screenHeight);
-							if (medusa[i].rec.y >= screenHeight)
-							{
-								upMovement = false;
-							}
-							break;
-						case false:
-							medusa[i].rec.y -= sin(screenHeight);
-							if (medusa[i].rec.y < screenHeight - 100)
-							{
-								upMovement = true;
-							}
-							break;
-						}
+						if(medusa[i].upMovement)
+							medusa[i].rec.y += enemySpeed / 4;
+						else
+							medusa[i].rec.y -= enemySpeed / 4;
+					}
+					else
+					{
+						if (medusa[i].upMovement)
+							medusa[i].rec.y += enemySpeed / 2;
+						else
+							medusa[i].rec.y -= enemySpeed / 2;
 					}
 
-					if (CheckCollisionRecs(medusa[i].rec, warrior.rec)) {
-						medusa[i].color = BLUE;
-						warrior.health -= 3;
-					}
-					medusa[i].rec.x--;
+					medusa[i].rec.x -= enemySpeed / 3;
+				}
+
+				if (CheckCollisionRecs(medusa[i].rec, warrior.rec)) {
+					medusa[i].color = BLUE;
+					warrior.health -= 3;
+
 				}
 			}
 		}
