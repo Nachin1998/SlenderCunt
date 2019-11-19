@@ -58,7 +58,6 @@ namespace Game {
 			ClearBackground(BLACK);
 
 			draw_buttons();
-
 			DrawText("SlendiBoi", GetScreenWidth() / 3, screenHeight / 2 - 200, 50, LIGHTGRAY);
 
 			DrawText("Exit", buttons[0].x, buttons[0].y, 20, LIGHTGRAY);
@@ -73,8 +72,7 @@ namespace Game {
 			DrawText("P to pause", GetScreenWidth() / 2 - 60, screenHeight / 2 + 200, 20, LIGHTGRAY);
 
 			EndDrawing();
-			if (IsKeyPressed(KEY_ENTER)) {
-			}
+
 		}
 	}
 }
