@@ -78,8 +78,8 @@ namespace Game {
 
 				if (medusa[i].active)
 				{
-					if (IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT)) medusa[i].rec.x -= enemySpeed;
-					if (IsKeyDown(KEY_A) || IsKeyDown(KEY_LEFT))  medusa[i].rec.x += enemySpeed;
+					if (IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT)) medusa[i].rec.x -= enemySpeed / 4;
+					if (IsKeyDown(KEY_A) || IsKeyDown(KEY_LEFT))  medusa[i].rec.x += enemySpeed / 4;
 
 					if (medusa[i].rec.x < 0 - medusa[i].rec.width)
 					{
@@ -113,7 +113,7 @@ namespace Game {
 							medusa[i].rec.y -= enemySpeed / 2;
 					}
 
-					medusa[i].rec.x -= enemySpeed / 3;
+					medusa[i].rec.x -= enemySpeed / 5;
 				}
 
 				if (CheckCollisionRecs(medusa[i].rec, warrior.rec)) {
