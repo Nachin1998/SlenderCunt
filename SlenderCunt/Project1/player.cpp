@@ -68,13 +68,6 @@ namespace Game {
 		staminaBar.color = GREEN;
 	}
 
-	void initAOI() {
-		AOIattackArea.x = warrior.rec.x - 14.3f;
-		AOIattackArea.y = warrior.rec.y + 15;
-		AOIattackArea.height = 50;
-		AOIattackArea.width = 50;
-	}
-
 	void initMelee() {
 		meleeAttackArea.x = warrior.rec.x;
 		meleeAttackArea.y = warrior.rec.y + 30;
@@ -89,12 +82,6 @@ namespace Game {
 		DrawRectangleLines(healthBar.rec.x, healthBar.rec.y, 200, healthBar.rec.height, WHITE);
 		DrawRectangleRec(staminaBar.rec, staminaBar.color);
 
-		if (staminaBar.rec.width < 25) {
-			DrawRectangleRec(staminaBar.rec, GREEN);
-		}
-		else
-			DrawRectangleRec(staminaBar.rec, BLUE);
-
 		DrawRectangleLines(staminaBar.rec.x, staminaBar.rec.y, 150, staminaBar.rec.height, WHITE);
 
 		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
@@ -105,44 +92,6 @@ namespace Game {
 				DrawRectangleLinesEx(AOIattackArea, 4, GREEN);
 		}
 
-	}
-
-	void AOIUpdate() {
-
-		if (staminaBar.rec.width > 25) {
-			AOIattack();
-			if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON)) {
-				if (AOIattackArea.height < 200 && AOIattackArea.width < 200) {
-					AOIattackArea.x -= 0.5f;
-					AOIattackArea.width += 1;
-					AOIattackArea.y -= 0.5f;
-					AOIattackArea.height += 1;
-				}
-			}
-
-			if (IsMouseButtonReleased(MOUSE_RIGHT_BUTTON)) {
-				if (AOIattackArea.width >= 50 && AOIattackArea.width <= 100)
-					staminaBar.rec.width -= 10;
-
-				if (AOIattackArea.width >= 100 && AOIattackArea.width <= 150)
-					staminaBar.rec.width -= 25;
-
-				if (AOIattackArea.width >= 150 && AOIattackArea.width <= 200)
-					staminaBar.rec.width -= 40;
-			}
-
-			if (!IsMouseButtonDown(MOUSE_RIGHT_BUTTON)) {
-				AOIattackArea.x = warrior.rec.x - 14.3f;
-				AOIattackArea.y = warrior.rec.y + 15;
-				AOIattackArea.height = 50;
-				AOIattackArea.width = 50;
-			}
-		}
-		else 
-			staminaBar.color = BLUE;
-
-		if (staminaBar.rec.width <= 0)staminaBar.rec.width = 0;
-		if (staminaBar.rec.width < 150)staminaBar.rec.width += staminaRegen;
 	}
 
 	void updatePlayer() {
@@ -168,6 +117,16 @@ namespace Game {
 		AOIUpdate();
 	}
 
+	void meleeAttack() {
+		for (int i = 0; i < cantSlimes; i++) {
+			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && CheckCollisionRecs(meleeAttackArea, slime[i].rec)) {
+				slime[i].color = RAYWHITE;
+				slime[i].health -= warrior.attackDamage;
+				slime[i].rec.x += knockback;
+			}
+		}
+	}
+	
 	void meleeUpdate() {
 		meleeAttack();
 		if (warrior.aim) {
@@ -180,16 +139,13 @@ namespace Game {
 		}
 	}
 
-	void meleeAttack() {
-		for (int i = 0; i < cantSlimes; i++) {
-			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && CheckCollisionRecs(meleeAttackArea, slime[i].rec)) {
-				slime[i].color = RAYWHITE;
-				slime[i].health -= warrior.attackDamage;
-				slime[i].rec.x += knockback;
-			}
-		}
+	void initAOI() {
+		AOIattackArea.x = warrior.rec.x - 14.3f;
+		AOIattackArea.y = warrior.rec.y;
+		AOIattackArea.height = 50;
+		AOIattackArea.width = 50;
 	}
-
+	
 	void AOIattack() {
 		for (int i = 0; i < cantSlimes; i++) {
 			if (IsMouseButtonReleased(MOUSE_RIGHT_BUTTON) && CheckCollisionRecs(AOIattackArea, slime[i].rec)) {
@@ -204,6 +160,45 @@ namespace Game {
 		}
 	}
 
+	void AOIUpdate() {
+		
+		if (staminaBar.rec.width > 25) {
+			staminaBar.color = GREEN;
+			AOIattack();
+			if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON)) {
+				if (AOIattackArea.height < 200 && AOIattackArea.width < 200) {
+
+					AOIattackArea.x -= 0.5f;
+					AOIattackArea.width += 1;
+					AOIattackArea.y -= 0.5f;
+					AOIattackArea.height += 1;
+				}
+			}
+
+			if (IsMouseButtonReleased(MOUSE_RIGHT_BUTTON)) {
+				if (AOIattackArea.width >= 50 && AOIattackArea.width <= 100)
+					staminaBar.rec.width -= 10;
+
+				if (AOIattackArea.width >= 100 && AOIattackArea.width <= 150)
+					staminaBar.rec.width -= 25;
+
+				if (AOIattackArea.width >= 150 && AOIattackArea.width <= 200)
+					staminaBar.rec.width -= 40;
+			}
+
+			if (!IsMouseButtonDown(MOUSE_RIGHT_BUTTON)) {
+				AOIattackArea.x = warrior.rec.x - 14.3f;
+				AOIattackArea.y = warrior.rec.y;
+				AOIattackArea.height = 50;
+				AOIattackArea.width = 50;
+			}
+		}
+		else
+			staminaBar.color = BLUE;
+
+		if (staminaBar.rec.width <= 0)staminaBar.rec.width = 0;
+		if (staminaBar.rec.width < 150)staminaBar.rec.width += staminaRegen;
+	}
 
 	void jump() {
 		if (IsKeyPressed(KEY_SPACE) && !gameOver && touchingFloor) {
