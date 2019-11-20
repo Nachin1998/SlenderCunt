@@ -4,13 +4,9 @@
 #include "enemy.h"
 #include "mainMenu.h"
 #include "parallax.h"
+#include "platforms.h"
 
 namespace Game {
-	struct Floor {
-		Rectangle rec;
-		Color color;
-	};
-	Floor floor;
 
 	static void InitGame();
 	static void UpdateGame();
@@ -18,9 +14,7 @@ namespace Game {
 	static void DrawGame();
 	static void UnloadGame();
 	static void UpdateDrawFrame();
-	static void initFloor();
-	bool jumping;
-	int jumpAltitude;
+
 	void play()
 	{
 		InitGame();
@@ -43,12 +37,8 @@ namespace Game {
 		initPlayer();
 		initEnemy();
 
-		floor.rec.x = 0;
-		floor.rec.y = screenHeight;
-		floor.rec.height = 10;
-		floor.rec.width = screenWidth;
-
 		initFloor();
+		initPlatforms();
 
 		gameOver = false;
 		superfx = false;
@@ -65,17 +55,6 @@ namespace Game {
 			{
 				UpdateEntites();
 
-
-				if (CheckCollisionRecs(warrior.rec, floor.rec)) touchingFloor = true;
-				else touchingFloor = false;
-
-				if (IsKeyPressed(KEY_SPACE) && !gameOver && touchingFloor) {
-					jumping = true;
-					
-					while (jumpAltitude <= warrior.rec.y) warrior.rec.y -= 0.001f;
-				}
-
-				if (!touchingFloor) warrior.rec.y += 3;
 			}
 		}
 		else
@@ -99,8 +78,9 @@ namespace Game {
 
 		drawPlayer();
 		drawEnemy();
-
-		DrawRectangleRec(floor.rec, BLACK);
+		drawFloor();
+		drawPlatforms();
+		
 
 		if (superfx)
 		{
@@ -109,8 +89,6 @@ namespace Game {
 		}
 	
 		if (pause) DrawText("Paused", screenWidth / 2 - MeasureText("Paused", 40) / 2, screenHeight / 2 - 40, 40, GRAY);
-
-
 
 		EndDrawing();
 	}
@@ -121,8 +99,15 @@ namespace Game {
 		if (CheckCollisionRecs(rec, floor.rec)) touchingFloor = true;
 		else touchingFloor = false;
 
-		if (!touchingFloor)
-			rec.y += 3;
+		/*for (int i = 0; i < maxPlatform; i++) {
+			if (CheckCollisionRecs(rec, platform[i].rec)) touchingFloor = true;
+			else touchingFloor = false;
+		}*/ 
+
+
+		//Eso hace que el player atraviese el piso, sin siquiera detectar las plataformas
+
+		if (!touchingFloor) rec.y += 3;
 	}
 
 	void UnloadGame()
@@ -135,21 +120,12 @@ namespace Game {
 		UpdateGame();
 		DrawGame();
 	}
-	void initFloor()
-	{
-		floor.rec.x = 0;
-		floor.rec.y = screenHeight - 20;
-		floor.rec.height = 10;
-		floor.rec.width = screenWidth;
-
-		jumpAltitude = warrior.rec.y - 100;
-	}
 
 	void UpdateEntites() {
 
 		updateEnemy();
 		updatePlayer();
 		update_parallax();
-
+		updatePlatforms();
 	}
 }

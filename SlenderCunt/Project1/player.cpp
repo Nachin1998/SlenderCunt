@@ -7,6 +7,9 @@
 namespace Game {
 	float knockback = 10.f;
 	float staminaRegen = 0.1f;
+	const float minStamina = 25.0f;
+	bool jumping;
+	int jumpAltitude;
 
 	void initPlayer();
 	void initHealthBar();
@@ -43,7 +46,7 @@ namespace Game {
 		warrior.rec.height = 40;
 		warrior.rec.width = 20;
 		warrior.rec.x = 100;
-		warrior.rec.y = 400 - warrior.rec.height;
+		warrior.rec.y = 0;
 		warrior.color = GRAY;
 
 		initHealthBar();
@@ -87,7 +90,7 @@ namespace Game {
 		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 			DrawRectangleLinesEx(meleeAttackArea, 4, RED);
 
-		if (staminaBar.rec.width > 25) {
+		if (staminaBar.rec.width > minStamina) {
 			if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
 				DrawRectangleLinesEx(AOIattackArea, 4, GREEN);
 		}
@@ -162,7 +165,7 @@ namespace Game {
 
 	void AOIUpdate() {
 		
-		if (staminaBar.rec.width > 25) {
+		if (staminaBar.rec.width > minStamina) {
 			staminaBar.color = GREEN;
 			AOIattack();
 			if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON)) {
@@ -201,9 +204,9 @@ namespace Game {
 	}
 
 	void jump() {
-		if (IsKeyPressed(KEY_SPACE) && !gameOver && touchingFloor) {
-			bool jumping = true;
-			if (jumping)warrior.rec.y--;
+
+		if (IsKeyPressed(KEY_SPACE) && !gameOver) {
+			warrior.rec.y -= 100;
 		}
 	}
 }

@@ -23,6 +23,9 @@
     <ClCompile Include="credits.cpp">
       <Filter>pantallas</Filter>
     </ClCompile>
+    <ClCompile Include="platforms.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="pantallas">
@@ -65,6 +68,9 @@
     </ClInclude>
     <ClInclude Include="credits.h">
       <Filter>pantallas</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms.h">
+      <Filter>game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -7,6 +7,7 @@ namespace Game {
 	int rec_x = screenWidth / 2.5F;
 	int rec_y = screenHeight / 2;
 	bool credits = false;
+
 	void init_rec()
 	{
 		for (int i = 0; i < CANT_REC; i++)
@@ -44,6 +45,7 @@ namespace Game {
 			}
 		}
 	}
+
 	void draw_buttons()
 	{
 		for (int i = 0; i < CANT_REC; i++) {

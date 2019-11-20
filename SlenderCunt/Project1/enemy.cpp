@@ -2,11 +2,12 @@
 #include "player.h"
 #include "game.h"
 #include "definitions.h"
+#include <cmath>
 
 namespace Game {
-	void enemyMovement();
 	Enemy slime[cantSlimes];
 	Enemy medusa[cantMedusa];
+	void enemyMovement();
 	float bottomRange = 30, topRange = screenHeight - 100, CosSinAux = 0, origY = screenHeight / 2;
 	void initEnemy() {
 
@@ -71,6 +72,7 @@ namespace Game {
 				if (slime[i].rec.x < 0 - slime[i].rec.width) slime[i].rec.x = screenWidth;
 			}
 			gravity(slime[i].rec);
+
 			//Medusa Movement
 			for (int i = 0; i < cantMedusa; i++)
 			{
