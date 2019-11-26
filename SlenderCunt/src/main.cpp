@@ -1,6 +1,7 @@
 #include "mainMenu.h"
 using namespace Game;
 
-void main() {
+int main() {
 	menu();
+	return 0;
 }

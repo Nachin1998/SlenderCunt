@@ -1,33 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="parallax.cpp">
-      <Filter>pantallas</Filter>
-    </ClCompile>
-    <ClCompile Include="player.cpp">
-      <Filter>entities\player</Filter>
-    </ClCompile>
-    <ClCompile Include="enemy.cpp">
-      <Filter>entities\enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="definitions.cpp">
-      <Filter>definitions</Filter>
-    </ClCompile>
-    <ClCompile Include="game.cpp">
-      <Filter>game</Filter>
-    </ClCompile>
-    <ClCompile Include="mainMenu.cpp">
-      <Filter>pantallas</Filter>
-    </ClCompile>
-    <ClCompile Include="credits.cpp">
-      <Filter>pantallas</Filter>
-    </ClCompile>
-    <ClCompile Include="platforms.cpp">
-      <Filter>game</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
     <Filter Include="pantallas">
       <UniqueIdentifier>{7a28e264-f413-44ec-9157-e533fa9c0a18}</UniqueIdentifier>
     </Filter>
@@ -48,29 +21,56 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="parallax.h">
+    <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\pantallas\credits.cpp">
+      <Filter>pantallas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\pantallas\mainMenu.cpp">
+      <Filter>pantallas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\pantallas\parallax.cpp">
+      <Filter>pantallas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\game\game.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\game\platforms.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\entities\player\player.cpp">
+      <Filter>entities\player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\entities\enemies\enemy.cpp">
+      <Filter>entities\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\definitions\definitions.cpp">
+      <Filter>definitions</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\pantallas\credits.h">
       <Filter>pantallas</Filter>
     </ClInclude>
-    <ClInclude Include="player.h">
+    <ClInclude Include="..\src\pantallas\mainMenu.h">
+      <Filter>pantallas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\pantallas\parallax.h">
+      <Filter>pantallas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\game\game.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\game\platforms.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\entities\player\player.h">
       <Filter>entities\player</Filter>
     </ClInclude>
-    <ClInclude Include="enemy.h">
+    <ClInclude Include="..\src\entities\enemies\enemy.h">
       <Filter>entities\enemy</Filter>
     </ClInclude>
-    <ClInclude Include="definitions.h">
+    <ClInclude Include="..\src\definitions\definitions.h">
       <Filter>definitions</Filter>
-    </ClInclude>
-    <ClInclude Include="game.h">
-      <Filter>game</Filter>
-    </ClInclude>
-    <ClInclude Include="mainMenu.h">
-      <Filter>pantallas</Filter>
-    </ClInclude>
-    <ClInclude Include="credits.h">
-      <Filter>pantallas</Filter>
-    </ClInclude>
-    <ClInclude Include="platforms.h">
-      <Filter>game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -4,7 +4,7 @@ namespace Game {
 
 	Vector2 mouse_pos;
 	Rectangle buttons[CANT_REC];
-	int rec_x = screenWidth / 2.5F;
+	int rec_x = static_cast<int>(screenWidth / 2.5F);
 	int rec_y = screenHeight / 2;
 	bool credits = false;
 
@@ -26,7 +26,7 @@ namespace Game {
 		for (int i = 0; i < CANT_REC; i++) {
 			if (CheckCollisionPointRec(mouse_pos, buttons[i])) {
 				DrawRectangleRec(buttons[i], GRAY);
-				if (CheckCollisionPointRec(mouse_pos, buttons[2]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) 
+				if (CheckCollisionPointRec(mouse_pos, buttons[2]) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 				{
 					ClearBackground(BLACK);
 					DrawText("Loading", screenWidth / 3, screenHeight / 2, 50, RED);
@@ -54,7 +54,7 @@ namespace Game {
 			else
 				DrawRectangleRec(buttons[i], BROWN);
 		}
-		
+
 	}
 
 	void menu() {
@@ -73,9 +73,9 @@ namespace Game {
 			update_buttons();
 			DrawText("SlendiBoi", GetScreenWidth() / 3, screenHeight / 2 - 200, 50, LIGHTGRAY);
 
-			DrawText("Exit", buttons[0].x, buttons[0].y, 20, LIGHTGRAY);
-			DrawText("Start", buttons[2].x, buttons[2].y, 20, LIGHTGRAY);
-			DrawText("Credits", buttons[1].x, buttons[1].y, 20, LIGHTGRAY);
+			DrawText("Exit", static_cast<int>(buttons[0].x), static_cast<int>(buttons[0].y), 20, LIGHTGRAY);
+			DrawText("Start", static_cast<int>(buttons[2].x), static_cast<int>(buttons[2].y), 20, LIGHTGRAY);
+			DrawText("Credits", static_cast<int>(buttons[1].x), static_cast<int>(buttons[1].y), 20, LIGHTGRAY);
 
 			if (credits)
 			{

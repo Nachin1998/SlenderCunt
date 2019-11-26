@@ -94,7 +94,6 @@ namespace Game {
 	}
 
 	void gravity(Rectangle &rec) {
-		bool touchingFloor;
 
 		for (int i = 0; i < maxPlatform; i++) {
 			if (CheckCollisionRecs(rec, floor.rec) || CheckCollisionRecs(rec, platform[i].rec)) touchingFloor = true;

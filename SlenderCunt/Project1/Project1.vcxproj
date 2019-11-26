@@ -18,6 +18,27 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\definitions\definitions.cpp" />
+    <ClCompile Include="..\src\entities\enemies\enemy.cpp" />
+    <ClCompile Include="..\src\entities\player\player.cpp" />
+    <ClCompile Include="..\src\game\game.cpp" />
+    <ClCompile Include="..\src\game\platforms.cpp" />
+    <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\pantallas\credits.cpp" />
+    <ClCompile Include="..\src\pantallas\mainMenu.cpp" />
+    <ClCompile Include="..\src\pantallas\parallax.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\definitions\definitions.h" />
+    <ClInclude Include="..\src\entities\enemies\enemy.h" />
+    <ClInclude Include="..\src\entities\player\player.h" />
+    <ClInclude Include="..\src\game\game.h" />
+    <ClInclude Include="..\src\game\platforms.h" />
+    <ClInclude Include="..\src\pantallas\credits.h" />
+    <ClInclude Include="..\src\pantallas\mainMenu.h" />
+    <ClInclude Include="..\src\pantallas\parallax.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{E4275E93-37BD-4A74-94CB-D070EBD450DE}</ProjectGuid>
@@ -83,7 +104,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\raylib-2.5.0-Win32-msvc15\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)src\pantallas;$(SolutionDir)src\game;$(SolutionDir)src\entities\player;$(SolutionDir)src\entities\enemies;$(SolutionDir)src\definitions;$(SolutionDir)lib\raylib-2.5.0-Win32-msvc15\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -91,7 +112,7 @@
       <AdditionalDependencies>raylib.lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)lib\raylib-2.5.0-Win32-msvc15\lib\raylib.dll $(OutDir) /y</Command>
+      <Command>$(SolutionDir)do_this_pls.bat "$(SolutionDir)" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -143,27 +164,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="credits.cpp" />
-    <ClCompile Include="definitions.cpp" />
-    <ClCompile Include="enemy.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="mainMenu.cpp" />
-    <ClCompile Include="parallax.cpp" />
-    <ClCompile Include="platforms.cpp" />
-    <ClCompile Include="player.cpp" />
-    <ClCompile Include="game.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="credits.h" />
-    <ClInclude Include="definitions.h" />
-    <ClInclude Include="enemy.h" />
-    <ClInclude Include="mainMenu.h" />
-    <ClInclude Include="parallax.h" />
-    <ClInclude Include="platforms.h" />
-    <ClInclude Include="player.h" />
-    <ClInclude Include="game.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
