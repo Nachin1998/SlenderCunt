@@ -96,16 +96,10 @@ namespace Game {
 	void gravity(Rectangle &rec) {
 		bool touchingFloor;
 
-		if (CheckCollisionRecs(rec, floor.rec)) touchingFloor = true;
-		else touchingFloor = false;
-
-		/*for (int i = 0; i < maxPlatform; i++) {
-			if (CheckCollisionRecs(rec, platform[i].rec)) touchingFloor = true;
+		for (int i = 0; i < maxPlatform; i++) {
+			if (CheckCollisionRecs(rec, floor.rec) || CheckCollisionRecs(rec, platform[i].rec)) touchingFloor = true;
 			else touchingFloor = false;
-		}*/ 
-
-
-		//Eso hace que el player atraviese el piso, sin siquiera detectar las plataformas
+		}
 
 		if (!touchingFloor) rec.y += 3;
 	}
